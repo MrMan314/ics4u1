@@ -87,21 +87,32 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner inputReader = new Scanner(System.in);
-		System.out.print(	"Please select the question you want to run from the following list:\n" +
-							"\t1. Bingo card\n" +
-							"\t\tGenerates a random Bingo Card\n" +
-							"\t2. Bingo rules\n" +
-							"\t\tPrints out the rules of the Bingo game\n" +
-							"\t3. Box\n" +
-							"\t\tPrints out a 15 wide, 7 high box made of asterisks.\n" +
-							"\t8. Java Terminology\n" +
-							"\t\tPrints out five Java terms and their definitions.\n" +
-							"Please enter the question number, or anything else to quit > ");
-		String option = inputReader.nextLine();
-		if(option.equals("1")) {
-			bingoCard();
-		} else if (option.equals("2")) {
-			bingoRules();
-		} else if (option.equals(
+		boolean running = true;
+		while (running) {
+			System.out.print(	"Please select the question you want to run from the following list:\n" +
+								"\t1. Bingo card\n" +
+								"\t\tGenerates a random Bingo Card\n" +
+								"\t2. Bingo rules\n" +
+								"\t\tPrints out the rules of the Bingo game\n" +
+								"\t3. Box\n" +
+								"\t\tPrints out a 15 wide, 7 high box made of asterisks.\n" +
+								"\t8. Java Terminology\n" +
+								"\t\tPrints out five Java terms and their definitions.\n" +
+								"Please enter the question number, or 'q' to quit > ");
+			String option = inputReader.nextLine();
+			if(option.equals("1")) {
+				bingoCard();
+			} else if (option.equals("2")) {
+				bingoRules();
+			} else if (option.equals("3")) {
+				box(15, 7);
+			} else if (option.equals("8")) {
+				javaTerminology();
+			} else if (option.equals("q")) {
+				running = false;
+			} else {
+				System.out.println("Sorry, I don't know what you mean.");
+			}
+		}
 	}
 }
