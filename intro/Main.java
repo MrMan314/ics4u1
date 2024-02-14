@@ -137,6 +137,8 @@ public class Main {
 								"\t\tPrints out five Java terms and their definitions.\n" +
 								"Please enter the question number, or 'q' to quit > ");
 			String option = inputReader.nextLine();
+			// Add padding for output
+			System.out.println();
 			// Check for every option
 			if(option.equals("1")) {
 				bingoCard();
@@ -151,6 +153,8 @@ public class Main {
 			} else {
 				System.out.println("Sorry, I don't know what you mean.");
 			}
+			// Add padding for output
+			System.out.println();
 		}
 	}
 }
