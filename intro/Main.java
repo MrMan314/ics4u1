@@ -1,42 +1,65 @@
+/*
+ * Main.java
+ * Lesson 01 - Intro to Java
+ * Excercises 1-3,8
+ */
+
 import java.util.Scanner;
 import java.util.Random;
 
 public class Main {
-	
+
+	/**
+	 * Randomly generates a Bingo card
+	 */	
 	private static void bingoCard() {
+		// Random number generator
 		Random randomGenerator = new Random();
+		// Bingo card header
 		System.out.println("      B      I      N      G      O");
+		// Create array for card to avoid duplicates
 		int[] card = new int[25];
-		int n = 0;
+		// Bingo space variable
+		int space = 0;
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
+				// If space is in the center, print "FREE"
 				if (i == 2 && j == 2) {
 					System.out.print("   FREE");
 				} else {
+					// Loop until generated number is not invalid
 					boolean invalidNumber = true;
 					while (invalidNumber) {
-						boolean found = false;
-						n = randomGenerator.nextInt(15) + 1 + j * 15;
-						for(int k = j; k < 25; k += 5) {
-							if(n == card[k]) {
-								found = true;
+						// Assume generated number is valid until otherwise proven
+						invalidNumber = false;
+						// Generate a random number between 1 and 15 inclusive, then increment by the column number times 15
+						space = randomGenerator.nextInt(15) + 1 + j * 15;
+						// Store into an array
+						card[i * 5 + j] = space;
+						// Loop for every column until the current index.
+						for(int k = j; k < (i * 5 + j); k += 5) {
+							// If number exists (meaning it is invalid), set the invalidNumber to true to loop again
+							if(space == card[k]) {
+								invalidNumber = true;
 								break;
 							}
 						}
-						if(!found) {
-							card[i * 5 + j] = n;
-							invalidNumber = false;
-						}
 					}
-					int spaces = 7 - Integer.toString(n).length();
+					// Calculate and print amount of spaces required to properly right-align the card as shown in the problem
+					int spaces = 7 - Integer.toString(space).length();
 					for(int k = 0; k < spaces; k++) System.out.print(" ");
-					System.out.print(n);
+					// Print out the bingo number
+					System.out.print(space);
 				}
 			}
+			// Create a new line for next row
 			System.out.println();
 		}
 	}
 
+	/**
+	 * Displays the rules to a Bingo game
+	 */
 	private static void bingoRules() {
 		System.out.println("Bingo Card\n");
 		System.out.println("1. The caller randomly pulls out a numbered bingo ball.\n");
@@ -47,11 +70,16 @@ public class Main {
 		System.out.println("6. The winning player yells BINGO.\n");
 	}
 
-	private static void box(int width, int height) {	
+	/**
+	 * Displays a box with the parameters width and height
+	 */
+	private static void box(int width, int height) {
+		// First row
 		for(int i = 0; i < width; i++) {
 			System.out.print("*");
 		}
 		System.out.println();
+		// Middle rows
 		for(int i = 0; i < height - 2; i++) {
 			System.out.print("*");
 			for(int j = 0; j < width - 2; j++) {
@@ -59,10 +87,14 @@ public class Main {
 			}
 			System.out.println("*");
 		}
+		// Last row
 		for(int i = 0; i < width; i++) System.out.print("*");
 		System.out.println();
 	}
 
+	/**
+	 * Displays five Java terms
+	 */
 	private static void javaTerminology() {
 		System.out.println("Java Terminology\n");
 		
@@ -85,8 +117,13 @@ public class Main {
 		System.out.println("An instruction in a program.\n");
 	}
 
+	/**
+	 * Main function to choose each question
+	 */
 	public static void main(String[] args) {
+		// Input reader
 		Scanner inputReader = new Scanner(System.in);
+		// Loop until user decides to stop running
 		boolean running = true;
 		while (running) {
 			System.out.print(	"Please select the question you want to run from the following list:\n" +
@@ -100,6 +137,7 @@ public class Main {
 								"\t\tPrints out five Java terms and their definitions.\n" +
 								"Please enter the question number, or 'q' to quit > ");
 			String option = inputReader.nextLine();
+			// Check for every option
 			if(option.equals("1")) {
 				bingoCard();
 			} else if (option.equals("2")) {
