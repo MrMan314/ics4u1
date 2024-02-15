@@ -123,10 +123,24 @@ public class Main {
 		
 		// Prompt user for input of amount tendered
 		System.out.print("Enter amount tendered: $");
-		// Calculate change amount
-		float amountTendered = inputReader.nextFloat();
-		float change = amountTendered - finalTotal;
 		
+		// Define amount tendered and change counters
+		float amountTendered = 0, change = 0;
+		// Loop until user has paid enough
+		do {
+			// Calculate change amount
+			amountTendered += inputReader.nextFloat();
+			change = amountTendered - finalTotal;
+			// If change is negative, re-prompt user
+			if(change < 0) {
+				System.out.printf(
+					"Not enough money, still need $%.2f\n" +
+					"Please enter additional amount tendered: $",
+					-change);
+			}
+		} while (change < 0);
+		// Read line to avoid glitching
+		inputReader.nextLine();
 		// Print out change amount
 		System.out.printf("Change: $%.2f\n", change);
 	}
