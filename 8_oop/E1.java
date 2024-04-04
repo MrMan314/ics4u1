@@ -1,7 +1,7 @@
 public class E1 extends Problem{
 
 	public E1() {
-		super(1, "Piggy Bank", "test");
+		super(1, "Piggy Bank", "Piggy bank emulator");
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 public class E3 extends Problem {
 
 	public E3() {
-		super(3, "Lunch Order", "test2");
+		super(3, "Lunch Order", "Prompts the user to order food, displaying the food's information");
 	}
 
 	@Override
@@ -13,13 +13,19 @@ public class E3 extends Problem {
 			new Food(0.95,  0, 38, 0, "soda", "sodas"),
 		};
 
+		double total = 0;
+
 		for (Food food: foods) {
 			System.out.printf(
-				"Each %s costs %.2f, has %dg of fat, %dg of carbs, and %dg of fiber.\n" +
+				"Each %s costs $%.2f, has %dg of fat, %dg of carbs, and %dg of fiber.\n" +
 				"Please enter number of %s: ",
 				food.getSingularName(), food.getPrice(), food.getFat(), food.getCarb(), food.getFiber(),
 				food.getPluralName()
 			);
+			int quantity = super.inputReader.nextInt();
+			super.inputReader.nextLine();
+			total += food.getPrice() * (double) quantity;
 		}
+		System.out.printf("Your order comes to: $%.2f.\n", total);
 	}
 }
