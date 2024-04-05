@@ -1,15 +1,28 @@
+/*
+ * E1.Java
+ * Lesson 8 - OOP
+ * Exercise 1 - Piggy Bank
+ */
+
 public class E1 extends Problem{
 
+	// Constructor to initialize fields in parent class
 	public E1() {
 		super(1, "Piggy Bank", "Piggy bank emulator");
 	}
 
+	/**
+	 * Main function run from outside
+	 */
 	@Override
 	public void run() {
+		// Create a new piggy bank and flag
 		PiggyBank bank = new PiggyBank();
 		boolean running = true;
 		
+		// Loop until user exits
 		while(running) {
+			// Prompt user for inputs
 			System.out.print(
 				"Please select the operation you would like to perform on the bank:\n" +
 				"\t0. QUIT\n" +
@@ -20,6 +33,7 @@ public class E1 extends Problem{
 			);
 			String option = super.inputReader.nextLine().toUpperCase().strip();
 
+			// Initialize variables for coin inputs
 			int coin, count;
 
 			switch(option) {
@@ -31,8 +45,10 @@ public class E1 extends Problem{
 				case "1":
 				case "ONE":
 				case "SHOW":
+					// Call functions to get value of coins from bank
 					double value = bank.getAmount();
 					int[] coins = bank.getCoins();
+					// Display total value with plural and singular depending on count
 					System.out.printf(
 						"There is currently $%.2f in the bank, comprised of:\n" +
 						"\t%d penn%s\n" +
@@ -48,27 +64,33 @@ public class E1 extends Problem{
 					break;
 				case "2":
 				case "ADD":
+					// Prompt user for coin, if return value is -1, the coin is invalid
 					coin = selectCoin();
 					if(coin == -1) {
 						System.out.println("Invalid coin");
 						break;
 					}
+					// Prompt for quantity of coins
 					System.out.print("Please enter the quantity of coins to add > ");
 					count = super.inputReader.nextInt();
 					super.inputReader.nextLine();
+					// Call function to add coin, then inform user
 					bank.addCoin(coin, count);
 					System.out.println("Coins added.");
 					break;
 				case "3":
 				case "REMOVE":
+					// Prompt user for coin, if return value is -1, the coin is invalid
 					coin = selectCoin();
 					if (coin == -1) {
 						System.out.println("Invalid coin");
 						break;
 					}
+					// Prompt for quantity of coins
 					System.out.print("Please enter the quantity of coins to remove > ");
 					count = super.inputReader.nextInt();
 					super.inputReader.nextLine();
+					// Call function to remove coin.  If there are not enough, nothing happens, inform user.
 					boolean removeFailure = bank.removeCoin(coin, count);
 					if (removeFailure) {
 						System.out.println("There are not enough coins to remove from the bank.");
@@ -79,11 +101,17 @@ public class E1 extends Problem{
 				default:
 					System.out.println("Sorry, I don't know what you mean!");
 			}
+			// Add new line for spacing
 			System.out.println();
 		}
 	}
-	
+
+	/**
+	 * Function to select a coin 
+	 * Returns -1 if the coin is invalid, the coin id if valid.
+	 */	
 	private int selectCoin() {
+		// Prompt user for input
 		System.out.print(
 			"Please select a coin:\n" +
 			"\t1. PENNIES\n" +
@@ -107,6 +135,7 @@ public class E1 extends Problem{
 			case "QUARTERS":
 				return 3;
 			default:
+				// Return -1 if coin is invalid
 				return -1;
 		}
 	}

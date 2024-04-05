@@ -1,10 +1,15 @@
+/**
+ * Food class for E3
+ */
 public class Food {
 
+	// Private global variables for food fields
 	private double price;
 	private int fat, carb, fiber;
 
-	String singularName, pluralName;
+	private String singularName, pluralName;
 
+	// Set fields in constructor
 	public Food(double price, int fat, int carb, int fiber, String singularName, String pluralName) {
 		this.price = price;
 		this.fat = fat;
@@ -14,6 +19,7 @@ public class Food {
 		this.pluralName = pluralName;
 	}
 
+	// Functions to get the information
 	public double getPrice() {
 		return price;
 	}

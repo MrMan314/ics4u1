@@ -1,6 +1,12 @@
+/**
+ * Piggy Bank class for E1
+ */
 public class PiggyBank {
-	private static int pennies, nickels, dimes, quarters;
 
+	// Private global variables for coin count	
+	private int pennies, nickels, dimes, quarters;
+
+	// On initialization, set all global variables to zero
 	public PiggyBank() {
 		pennies = 0;
 		nickels = 0;
@@ -8,7 +14,10 @@ public class PiggyBank {
 		quarters = 0;
 	}
 
-	public static void addCoin(int coin, int count) {
+	/**
+	 * Function to add coins and count.  If the coin is invalid, nothing happens.
+	 */
+	public void addCoin(int coin, int count) {
 		switch (coin) {
 			case 0:
 				pennies += count;
@@ -24,11 +33,21 @@ public class PiggyBank {
 		}
 	}
 
-	public static double getAmount() {
+	/**
+	 * Calculates amount based on coins
+	 */
+	public double getAmount() {
 		return pennies * 0.01 + nickels * 0.05 + dimes * 0.10 + quarters * 0.25;
 	}
 
-	public static int[] getCoins() {
+	/**
+	 * Function to get each coin, returns an int array for each count:
+	 * 0: pennies
+	 * 1: nickels
+	 * 2: dimes
+	 * 3, quarters
+	 */
+	public int[] getCoins() {
 		int[] coins = {
 			pennies,
 			nickels,
@@ -38,7 +57,11 @@ public class PiggyBank {
 		return coins;
 	}
 
-	public static boolean removeCoin(int coin, int count) {
+	/**
+	 * Removes a coin from the bank
+	 * Returns true if there are not enough coins in the bank, otherwise return false
+	 */
+	public boolean removeCoin(int coin, int count) {
 		switch (coin) {
 			case 0:
 				pennies -= count;
