@@ -19,7 +19,8 @@ public class Main {
 		// Create array for the problems
 		Problem problems[] = {
 			new E1(),
-			new E3()
+			new E3(),
+			new E5()
 		};
 
 		// Running flag
