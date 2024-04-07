@@ -1,7 +1,7 @@
 /*
  * Main.java
  * Lesson 8 - OOP
- * Exercises 1, 3, and ?
+ * Exercises 1, 3, and 5
  */
 
 import java.util.Scanner;
