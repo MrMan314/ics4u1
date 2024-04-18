@@ -1,8 +1,9 @@
 import java.text.NumberFormat;
 
-public abstract class Account extends Customer {
-	protected double balance;
-	
+public class Account {
+	private double balance;
+	private Customer cust;
+
 	/**
 	 * constructor
 	 * pre: none
@@ -11,8 +12,8 @@ public abstract class Account extends Customer {
 	 */
 	public Account(double bal, String fName, String lName,
 			String str, String city, String st, String zip) {
-		super(fName, lName, str, city, st, zip);
 		balance = bal;
+		cust = new Customer(fName, lName, str, city, st, zip);
 	}
 
 	/**
@@ -38,7 +39,13 @@ public abstract class Account extends Customer {
 	 * pre: none
 	 * post: The balance has been decreased by the amount withdrawn.
 	 */
-	abstract void withdrawal(double amt);
+	public void withdrawal(double amt) {
+		if (amt <= balance) {
+			balance -= amt;
+		} else {
+			System.out.println("Not enough money in account.");
+		}
+	}
 
 	/**
 	 * Returns a String that represents the Account object.
@@ -46,10 +53,10 @@ public abstract class Account extends Customer {
 	 * post: A string representing the Account object has
 	 * been returned.
 	 */
-	public String balanceString() {
+	public String toString() {
 		String accountString;
 		NumberFormat money = NumberFormat.getCurrencyInstance();
-		accountString = super.toString();
+		accountString = cust.toString();
 		accountString += "Current balance is " + money.format(balance);
 		return(accountString);
 	}

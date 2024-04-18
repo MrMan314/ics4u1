@@ -6,6 +6,7 @@ public class PersonalAcct extends Account {
 		super(limit, fName, lName, str, city, st, zip);
 	}
 
+	@Override
 	public void withdrawal(double amt) {
 		if (super.balance < amt) {
 			System.out.println("There is not enough balance to perform this operation");
