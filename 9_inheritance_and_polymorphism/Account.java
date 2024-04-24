@@ -1,8 +1,11 @@
 import java.text.NumberFormat;
 
-public class Account {
+abstract class Account {
 	private double balance;
+	private String accountType = "";
 	private Customer cust;
+	private double limit;
+	private double penalty;
 
 	/**
 	 * constructor
@@ -10,9 +13,11 @@ public class Account {
 	 * post: An account created. Balance and
 	 * customer data initialized with parameters.
 	 */
-	public Account(double bal, String fName, String lName,
-			String str, String city, String st, String zip) {
-		balance = bal;
+	public Account(double balance, String fName, String lName, String str, String city, String st, String zip, String accountType, double limit, double penalty) {
+		this.balance = balance;
+		this.accountType = accountType;
+		this.limit = limit;
+		this.penalty = penalty;
 		cust = new Customer(fName, lName, str, city, st, zip);
 	}
 
@@ -40,11 +45,19 @@ public class Account {
 	 * post: The balance has been decreased by the amount withdrawn.
 	 */
 	public void withdrawal(double amt) {
-		if (amt <= balance) {
-			balance -= amt;
-		} else {
-			System.out.println("Not enough money in account.");
+		if (balance < amt) {
+			System.out.println("There is not enough balance to perform this operation");
+			return;
 		}
+		balance -= amt;
+		if (balance < limit) {
+			balance -= penalty;
+			System.out.printf("You have exceeded the withdraw limit of $%.2f on your account. An additional $%.2f has been charged\n", limit, penalty);
+		}
+	}
+	
+	public String getType() {
+		return accountType;
 	}
 
 	/**
@@ -59,5 +72,9 @@ public class Account {
 		accountString = cust.toString();
 		accountString += "Current balance is " + money.format(balance);
 		return(accountString);
+	}
+
+	public String toCustomerString() {
+		return cust.toString();
 	}
 }

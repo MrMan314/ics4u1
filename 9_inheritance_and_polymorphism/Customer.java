@@ -26,8 +26,8 @@ public class Customer {
 	 */
 	public String toString() {
 		String custString;
-		custString = firstName + " " + lastName + "\n";
-		custString += street + "\n";
+		custString = "\t" + firstName + " " + lastName + "\n\t";
+		custString += street + "\n\t";
 		custString += city + ", " + state + " " + zip + "\n";
 		return(custString);
 	}
