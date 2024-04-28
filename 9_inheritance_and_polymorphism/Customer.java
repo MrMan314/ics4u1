@@ -1,3 +1,8 @@
+/*
+ * Customer.java
+ * Customer object copied and modified from textbook
+ */
+
 public class Customer {
 	private String firstName, lastName, street, city,
 			state, zip;

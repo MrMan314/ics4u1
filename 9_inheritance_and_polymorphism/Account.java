@@ -1,3 +1,8 @@
+/*
+ * Account.java
+ * Account object copied and modified from textbook
+ */
+
 import java.text.NumberFormat;
 
 abstract class Account {
