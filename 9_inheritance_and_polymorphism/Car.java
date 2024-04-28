@@ -4,7 +4,7 @@
  */
 
 public class Car extends Vehicle {
-	private bool running;
+	private boolean running;
 
 	/**
 	 * Constructor for Car

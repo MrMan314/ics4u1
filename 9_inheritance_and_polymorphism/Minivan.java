@@ -4,7 +4,7 @@
  */
 
 public class Minivan extends Vehicle {
-	private bool running;
+	private boolean running;
 
 	/**
 	 * Constructor for minivan
