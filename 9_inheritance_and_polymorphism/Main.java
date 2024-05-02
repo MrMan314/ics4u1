@@ -1,7 +1,7 @@
 /*
  * Main.java
- * Lesson 8 - OOP
- * Exercises 1, 3, and 5
+ * Lesson 9 - Inheritance and Polymorphism
+ * Exercises 2 and 3
  */
 
 import java.util.Scanner;
@@ -18,7 +18,8 @@ public class Main {
 
 		// Create array for the problems
 		Problem problems[] = {
-			new E2()
+			new E2(),
+			new E3()
 		};
 
 		// Running flag
