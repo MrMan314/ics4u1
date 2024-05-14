@@ -5,7 +5,7 @@
 
 import java.util.ArrayList;
 
-public class E2 extends Problem {
+public class L9E2 extends Problem {
 	// ArrayList to store accounts
 	private ArrayList<Account> accounts = new ArrayList<Account>();
 
@@ -14,8 +14,8 @@ public class E2 extends Problem {
 	 * pre: none
 	 * post: E2 problem created
 	 */
-	public E2() {
-		super(2, "Accounts", "Simulates a personal and business account");
+	public L9E2() {
+		super(9, 2, "Accounts", "Simulates a personal and business account");
 	}
 
 	/**
